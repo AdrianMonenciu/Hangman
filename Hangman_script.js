@@ -54,16 +54,13 @@ function updateHangmanPicture() {
 
 function checkIfGameWon() {
   if (wordStatus === answer) {
-    document.getElementById('keyboardRow1').innerHTML = 'You Won!!!';
-    document.getElementById('keyboardRow2').innerHTML = '';
+    printMessage('You Won!!!');
   }
 }
 
 function checkIfGameLost() {
   if (mistakes === maxWrong) {
-    document.getElementById('wordSpotlight').innerHTML = 'The answer was: ' + answer;
-    document.getElementById('keyboardRow1').innerHTML = 'You Lost!!!';
-    document.getElementById('keyboardRow2').innerHTML = '';
+    printMessage('You Lost!!!');
   }
 }
 
@@ -86,6 +83,14 @@ function reset() {
   randomWord();
   guessedWord();
   updateMistakes();
+}
+
+function printMessage (message) {
+  document.getElementById('keyboardRow1').innerHTML = message;
+  document.getElementById('keyboardRow2').innerHTML = '';
+  if (message === 'You Lost!!!') {
+    document.getElementById('wordSpotlight').innerHTML = 'The answer was: ' + answer;
+  }
 }
 
 document.getElementById('maxWrong').innerHTML = maxWrong;
